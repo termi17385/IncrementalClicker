@@ -13,7 +13,7 @@ namespace incrementalClicker.manager
         [SerializeField, Tooltip("Shows the ammount of products produced")]
         private int products;
         [SerializeField]
-        public static int production;
+        public static int production = 0;
         [SerializeField, Tooltip("GameObject with text box component to display information to the player")]
         private GameObject productDisplay;
         #endregion
@@ -23,12 +23,26 @@ namespace incrementalClicker.manager
         public float money;   
         [SerializeField]
         public static float cashCount;
+        public static float sellAmount = 2.5f;
         [SerializeField, Tooltip("GameObject with text box component to display information to the player")]
         private GameObject cashDisplay;
         #endregion
         #endregion
 
         #region Start and Update
+
+        #region Singleton
+        public static GameManager Instance = null;
+        private void Awake()
+        {
+            // If an Instance Exists in Unity
+            if (Instance != null)
+                Destroy(Instance); // Destroy that instance (to remove duplicates)
+                                   // Assign new Instance to this
+            Instance = this;
+        }
+        #endregion
+
         private void Update()
         {
             AmountOfProducts();

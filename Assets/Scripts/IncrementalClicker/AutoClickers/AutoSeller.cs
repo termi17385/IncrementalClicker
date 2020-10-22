@@ -7,11 +7,17 @@ public class AutoSeller : MonoBehaviour
 {
     #region variables
     public bool autoSeller = false;
-    public static int autoClick = 0;
+    public static int autoClick = 1;
+    [SerializeField]
     private int salesTeam;
     #endregion
 
     #region AutoSell Methods
+    private void Start()
+    {
+        salesTeam = autoClick;
+    }
+
     private void Update()
     {
         _AutoSeller();
@@ -24,10 +30,20 @@ public class AutoSeller : MonoBehaviour
     private void _AutoSeller()
     {
         salesTeam = autoClick;
-        if (autoSeller == false)
+        
+        bool canAutoSell = (autoSeller == false) && (GameManager.production >= salesTeam);
+        bool cantAutoSell = (GameManager.production <= 0);
+
+        
+       
+        if (canAutoSell)
         {
             autoSeller = true;
-            StartCoroutine(Create());
+            StartCoroutine(Sell());
+        }
+        else if (cantAutoSell)
+        {
+            Debug.Log("Need More Production");
         }
     }
 
@@ -36,12 +52,12 @@ public class AutoSeller : MonoBehaviour
     /// waits for x amount of seconds then<br/> 
     /// sets auto Seller to false 
     /// </summary>
-    IEnumerator Create()
-    {
+    IEnumerator Sell()
+    {   
         GameManager.production -= autoClick;
-        GameManager.cashCount += autoClick;
+        GameManager.cashCount += GameManager.sellAmount;
         yield return new WaitForSeconds(1);
-        autoSeller = false;
+        autoSeller = false;       
     }
     #endregion
 }

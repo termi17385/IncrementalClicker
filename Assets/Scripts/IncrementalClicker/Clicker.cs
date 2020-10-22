@@ -8,7 +8,8 @@ public class Clicker : MonoBehaviour
 {
     #region Variables
     [SerializeField, Tooltip("used to display the timer in the inspector")]
-    private float Displaytimer;          
+    private float Displaytimer;  
+    
     [SerializeField, Tooltip("Used to activate the Error message gameObject")]
     private GameObject errorMessage;
     #endregion

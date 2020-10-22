@@ -8,6 +8,7 @@ public class AutoClicker : MonoBehaviour
     #region variables
     public bool autoProduction = false;
     public static int autoClick = 0;
+    [SerializeField]
     private int robots;
     #endregion
 

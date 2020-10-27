@@ -20,7 +20,9 @@ namespace incrementalClicker.manager
 
         #region Money Variables
         [SerializeField, Tooltip("Shows the ammount of money we have")]
-        public float money;   
+        public float money;
+        [SerializeField, Tooltip("Shows the amount products are sold for")]
+        private float displaySell;
         [SerializeField]
         public static float cashCount;
         public static float sellAmount = 2.5f;
@@ -57,6 +59,7 @@ namespace incrementalClicker.manager
         /// </summary>
         private void AmountOfProducts()
         {
+            displaySell = sellAmount;
             products = production;
             productDisplay.GetComponent<Text>().text = "HL3 Copies: " + products;
         }

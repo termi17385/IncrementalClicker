@@ -30,8 +30,12 @@ public class DebugScript : MonoBehaviour
         } 
     }
 
-    public void DebugMoney(float Money)
+    public void DebugGiveMoney(float Money)
     {
         GameManager.cashCount += Money;
+    }
+    public void DebugClearMoney()
+    {
+        GameManager.cashCount = 0;
     }
 }

@@ -15,8 +15,8 @@ public class SellerButton : UpgradeButton
             GameManager.cashCount -= upgrade.cost;
             // adds an autoclicker
             AutoSeller.autoClick += 1;
-
-            // cost increase
+            // increases the cost by a set percentage
+            upgrade.cost = upgrade.cost * (1 + (upgrade.costIncrease / 100));
         }
         print("Called Seller's Buy!");
     }

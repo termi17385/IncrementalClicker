@@ -7,7 +7,7 @@ public class AutoSeller : MonoBehaviour
 {
     #region variables
     public bool autoSeller = false;
-    public static int autoClick = 1;
+    public static int autoClick = 0;
     [SerializeField]
     private int salesTeam;
     #endregion
@@ -53,9 +53,10 @@ public class AutoSeller : MonoBehaviour
     /// sets auto Seller to false 
     /// </summary>
     IEnumerator Sell()
-    {   
+    {  
+        float cashIncrease = GameManager.sellAmount * autoClick;
         GameManager.production -= autoClick;
-        GameManager.cashCount += GameManager.sellAmount;
+        GameManager.cashCount += cashIncrease;
         yield return new WaitForSeconds(1);
         autoSeller = false;       
     }

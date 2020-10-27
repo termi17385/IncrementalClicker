@@ -66,7 +66,7 @@ public class Clicker : MonoBehaviour
         else
         {
             GameManager.production -= 1;
-            GameManager.cashCount += 2.5f;
+            GameManager.cashCount += GameManager.sellAmount;
         }
     }
     #endregion

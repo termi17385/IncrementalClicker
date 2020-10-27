@@ -220,11 +220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enhancement:
-    costIncrease: 2000
-    cost: 4
-    description: 
+    costIncrease: 100
+    cost: 2000
+    description: 300% increase
     maxUse: 5
-    moneyFactor: 1
+    counter: 0
+    moneyFactor: 300
   descriptionText: {fileID: 9122002697683035341}
 --- !u!1 &9122002697758121032
 GameObject:
@@ -1030,11 +1031,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enhancement:
-    costIncrease: 1
+    costIncrease: 25
     cost: 1000
-    description: 
+    description: 200% increase
     maxUse: 5
-    moneyFactor: 1
+    counter: 0
+    moneyFactor: 200
   descriptionText: {fileID: 9122002699205594994}
 --- !u!1 &9122002698731656988
 GameObject:
@@ -1179,11 +1181,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enhancement:
-    costIncrease: 1
+    costIncrease: 50
     cost: 1500
-    description: 
+    description: 250% increase
     maxUse: 5
-    moneyFactor: 1
+    counter: 0
+    moneyFactor: 250
   descriptionText: {fileID: 9122002697942233485}
 --- !u!1 &9122002698804576134
 GameObject:
@@ -1328,7 +1331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade:
-    costIncrease: 1
+    costIncrease: 40
     cost: 500
     description: 'Adds an AutoSeller cost: '
   gameObject: {fileID: 0}
@@ -1476,11 +1479,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enhancement:
-    costIncrease: 1
+    costIncrease: 10
     cost: 500
-    description: 
+    description: 150% increase
     maxUse: 5
-    moneyFactor: 1
+    counter: 0
+    moneyFactor: 150
   descriptionText: {fileID: 9122002697905556914}
 --- !u!1 &9122002698880657251
 GameObject:
@@ -1497,7 +1501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9122002698880657250
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,7 +1693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade:
-    costIncrease: 1
+    costIncrease: 25
     cost: 250
     description: 'Adds an AutoClicker cost: '
   gameObject: {fileID: 0}
@@ -2942,7 +2946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9122002699432036425
 Transform:
   m_ObjectHideFlags: 0

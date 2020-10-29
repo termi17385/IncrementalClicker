@@ -13,6 +13,11 @@ public class AutoClicker : MonoBehaviour
     #endregion
 
     #region AutoClick Methods
+    private void Start()
+    {
+        GameManager.autoClick = 1;
+    }
+
     private void Update()
     {
         _AutoClicker();

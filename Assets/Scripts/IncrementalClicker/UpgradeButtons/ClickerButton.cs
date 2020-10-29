@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ClickerButton : UpgradeButton
 {
+    
     // override method for the auto clicker button
     // overrides from upgrade class
     public override void Buy()

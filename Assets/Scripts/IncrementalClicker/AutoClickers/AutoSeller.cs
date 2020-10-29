@@ -16,6 +16,7 @@ public class AutoSeller : MonoBehaviour
     private void Start()
     {
         salesTeam = autoClick;
+        GameManager.autoSell = 1;
     }
 
     private void Update()

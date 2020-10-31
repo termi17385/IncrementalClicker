@@ -1,11 +1,28 @@
 ﻿using incrementalClicker;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace incrementalClicker.player
 {
     [System.Serializable]
     public class PlayerStats : MonoBehaviour 
     {
+        private float RequiredXP
+        {
+            get
+            {
+                //if the level is equal to 1, return the base xp requirement
+                if (level == 1)
+                {
+                    return requiredXp;
+                }
+
+                // Multiply the level by the experienceScalar to get the multiplier
+                // for the requireXp
+                return requiredXp * (level * xpScale);
+            }
+        }
+
         #region Variables
 
         #region Production
@@ -37,6 +54,27 @@ namespace incrementalClicker.player
         public GameObject displayMoney;
         [SerializeField]
         public GameObject activiateAutoSeller;
+        #endregion
+
+        #region Experience
+        [Header("Clicker Experience Stats")]
+        [SerializeField, Range(2, 10)]
+        public static int maxLevel = 3;
+        [SerializeField, Min(1)]
+        public static float requiredXp = 5;
+        [SerializeField, Min(1)]
+        public static float xpScale = 1;
+        public static int level = 1;
+        public static float xp = 0;
+
+        [SerializeField] private float rXp;
+        [SerializeField] private float _xp;
+        [SerializeField] private float _xpScale;
+        [SerializeField] private int _maxLevel;
+        [SerializeField] private int _level;
+
+        public Image xpBar;
+        public Gradient gradient;
         #endregion
 
         [Space]
@@ -84,6 +122,9 @@ namespace incrementalClicker.player
             enhancementButtons = _enhancementButtons;
             #endregion
 
+            xp = _xp;
+            _level = level;
+            rXp = RequiredXP;
 
             #region Clicker Methods
             clicker._timer();
@@ -96,8 +137,27 @@ namespace incrementalClicker.player
 
             ActivateAutoSaver();
             CheckIfAutoClickerIsSaved();
+
+            LevelUp();
+            SetLevel(xp);
         }
         #endregion
+
+        private void LevelUp()
+        {
+            if (xp >= RequiredXP)
+            {
+                level += 1;
+                _xp = 0;
+            }
+        }
+
+        public void SetLevel(float xp)
+        {
+            xpBar.fillAmount = Mathf.Clamp01(xp / RequiredXP);
+
+            xpBar.color = gradient.Evaluate(xpBar.fillAmount);
+        }
 
         #region SavingStuff
         public void SavePlayer()

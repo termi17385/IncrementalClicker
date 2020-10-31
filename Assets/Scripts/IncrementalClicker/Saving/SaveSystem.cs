@@ -27,7 +27,7 @@ public static class SaveSystem
         // formatts the data
         BinaryFormatter formatter = new BinaryFormatter();
         // sets a file path for storing the save
-        string path = Application.persistentDataPath + "/Game.Fun";
+        string path = Application.persistentDataPath + "/GameSave.NotASaveFile";
         // opens a file stream used to save the file to the choosen path
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -46,7 +46,7 @@ public static class SaveSystem
     public static void Load()
     {
         // sets the path to use
-        string path = Application.persistentDataPath + "/Game.Fun";
+        string path = Application.persistentDataPath + "/GameSave.NotASaveFile";
         // checks for if the file exists
         if (File.Exists(path))
         {

@@ -1,7 +1,4 @@
-﻿using incrementalClicker.manager;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
+﻿using incrementalClicker.player;
 using UnityEngine;
 
 public class DebugScript : MonoBehaviour
@@ -32,10 +29,10 @@ public class DebugScript : MonoBehaviour
 
     public void DebugGiveMoney(float Money)
     {
-        GameManager.cashCount += Money;
+        PlayerStats.money += Money;
     }
     public void DebugClearMoney()
     {
-        GameManager.cashCount = 0;
+        PlayerStats.money = 0;
     }
 }

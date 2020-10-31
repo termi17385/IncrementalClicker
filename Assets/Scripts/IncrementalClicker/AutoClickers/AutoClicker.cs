@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using incrementalClicker.player;
+using System.Collections;
 using UnityEngine;
-using incrementalClicker.manager;
 
 public class AutoClicker : MonoBehaviour
 {
     #region variables
     public bool autoProduction = false;
     public static int autoClick = 0;
+
     [SerializeField]
     private int robots;
     #endregion
@@ -15,7 +15,7 @@ public class AutoClicker : MonoBehaviour
     #region AutoClick Methods
     private void Start()
     {
-        GameManager.autoClick = 1;
+        PlayerStats.autoClickSave = true;
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class AutoClicker : MonoBehaviour
     /// </summary>
     IEnumerator Create()
     {
-        GameManager.production += autoClick;
+        PlayerStats.products += autoClick;
         yield return new WaitForSeconds(1);
         autoProduction = false;
     }

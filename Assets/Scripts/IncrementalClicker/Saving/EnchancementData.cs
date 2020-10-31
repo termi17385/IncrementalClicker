@@ -1,7 +1,5 @@
-﻿using incrementalClicker.manager;
-using System.Collections;
+﻿using incrementalClicker.player;
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class EnchancementData 
@@ -17,7 +15,7 @@ public class EnchancementData
     {
         enhancementData = new Dictionary<string, Enhancement>();
 
-        foreach (EnhancementButton button in GameManager.enhancementButtons)
+        foreach (EnhancementButton button in PlayerStats.enhancementButtons)
         {
             // adds the enhancement button to the dictionary with the name and its corresponding data
             AddButtonToSave(button.name, button);

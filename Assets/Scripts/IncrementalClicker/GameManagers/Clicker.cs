@@ -1,35 +1,24 @@
-﻿using incrementalClicker.manager;
+﻿using incrementalClicker.player;
 using UnityEngine;
 
 
 public class Clicker : MonoBehaviour
 {
     #region Variables
+    [Space]
     [SerializeField, Tooltip("used to display the timer in the inspector")]
-    private float Displaytimer;  
+    public float Displaytimer;  
     
     [SerializeField, Tooltip("Used to activate the Error message gameObject")]
-    private GameObject errorMessage;
+    public GameObject errorMessage;
     #endregion
 
-    #region Start and Update
-    private void Start()
-    {
-        
-        errorMessage.SetActive(false);
-    }
-
-    private void Update()
-    {
-        _timer();
-    }
-    #endregion
 
     #region Misc
     /// <summary>
     /// Timer used to disable error message after set time
     /// </summary>
-    private void _timer()
+    public void _timer()
     {
         Displaytimer -= Time.deltaTime;
 
@@ -42,20 +31,15 @@ public class Clicker : MonoBehaviour
     #endregion
 
     #region Production and selling
-    /// <summary>
-    /// Pressing the button increases the production
-    /// </summary>
-    public void ClickButton()
+    
+    public void MakeGame()
     {
-            GameManager.production += 1;
+        PlayerStats.products += 1;
     }
 
-    /// <summary>
-    /// When the sell button is click it will sell the product and add x ammount to the money
-    /// </summary>
     public void SellGame()
     {
-        if (GameManager.production == 0)
+        if (PlayerStats.products == 0)
         {
             // displays error message letting the player know they need more production
             errorMessage.SetActive(true);
@@ -63,9 +47,12 @@ public class Clicker : MonoBehaviour
         }
         else
         {
-            GameManager.production -= 1;
-            GameManager.cashCount += GameManager.sellAmount;
+            PlayerStats.products -= 1;
+            PlayerStats.money += PlayerStats.sellAmount;
         }
+        
     }
     #endregion
+
+
 }

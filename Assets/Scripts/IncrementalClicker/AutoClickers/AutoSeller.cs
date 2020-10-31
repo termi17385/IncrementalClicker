@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using incrementalClicker.manager;
+﻿using incrementalClicker.player;
+using System.Collections;
 using UnityEngine;
 
 public class AutoSeller : MonoBehaviour
@@ -8,6 +7,7 @@ public class AutoSeller : MonoBehaviour
     #region variables
     public bool autoSeller = false;
     public static int autoClick = 0;
+
     [SerializeField]
     private int salesTeam;
     #endregion
@@ -16,7 +16,7 @@ public class AutoSeller : MonoBehaviour
     private void Start()
     {
         salesTeam = autoClick;
-        GameManager.autoSell = 1;
+        PlayerStats.autoSellSave = true;
     }
 
     private void Update()
@@ -32,8 +32,8 @@ public class AutoSeller : MonoBehaviour
     {
         salesTeam = autoClick;
         
-        bool canAutoSell = (autoSeller == false) && (GameManager.production >= salesTeam);
-        bool cantAutoSell = (GameManager.production <= 0);
+        bool canAutoSell = (autoSeller == false) && (PlayerStats.products >= salesTeam);
+        bool cantAutoSell = (PlayerStats.products <= 0);
 
         
        
@@ -55,9 +55,9 @@ public class AutoSeller : MonoBehaviour
     /// </summary>
     IEnumerator Sell()
     {  
-        float cashIncrease = GameManager.sellAmount * autoClick;
-        GameManager.production -= autoClick;
-        GameManager.cashCount += cashIncrease;
+        float cashIncrease = PlayerStats.sellAmount * autoClick;
+        PlayerStats.products -= autoClick;
+        PlayerStats.money += cashIncrease;
         yield return new WaitForSeconds(1);
         autoSeller = false;       
     }

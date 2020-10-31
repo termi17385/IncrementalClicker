@@ -1,6 +1,4 @@
-﻿using incrementalClicker.manager;
-using System.Collections;
-using System.Collections.Generic;
+﻿using incrementalClicker.player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,17 +21,17 @@ public class EnhancementButton : MonoBehaviour
     public void Buy() // make abstract later and make 2 new classes 1 for money enhancement and 1 for production enhancement
     {
         #region Bools
-        bool canBuy = GameManager.cashCount >= enhancement.cost;
+        bool canBuy = PlayerStats.money >= enhancement.cost;
         bool underMaxUse = enhancement.counter < enhancement.maxUse;
         bool maxUse = enhancement.counter >= enhancement.maxUse;
         #endregion
 
         if (canBuy && underMaxUse)
         {
-            GameManager.cashCount -= enhancement.cost;
+            PlayerStats.money -= enhancement.cost;
             enhancement.counter++;
 
-            GameManager.sellAmount = GameManager.sellAmount * (1 + (enhancement.moneyFactor / 100));
+            PlayerStats.sellAmount = PlayerStats.sellAmount * (1 + (enhancement.moneyFactor / 100));
 
             enhancement.cost = enhancement.cost * (1 + (enhancement.costIncrease / 100));
         }

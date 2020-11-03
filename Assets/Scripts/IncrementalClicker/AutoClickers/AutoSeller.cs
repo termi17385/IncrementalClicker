@@ -55,9 +55,11 @@ public class AutoSeller : MonoBehaviour
     /// </summary>
     IEnumerator Sell()
     {  
+        float xpAmount = 0.001f;
         float cashIncrease = PlayerStats.sellAmount * autoClick;
         PlayerStats.products -= autoClick;
         PlayerStats.money += cashIncrease;
+        PlayerStats.xp += xpAmount;
         yield return new WaitForSeconds(1);
         autoSeller = false;       
     }

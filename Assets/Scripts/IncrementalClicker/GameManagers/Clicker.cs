@@ -1,4 +1,5 @@
 ﻿using incrementalClicker.player;
+using System.Collections;
 using UnityEngine;
 
 
@@ -8,7 +9,8 @@ public class Clicker : MonoBehaviour
     [Space]
     [SerializeField, Tooltip("used to display the timer in the inspector")]
     public float Displaytimer;  
-    
+    [SerializeField] private bool canGainXp = false;
+    [SerializeField] private bool timer = false;
     [SerializeField, Tooltip("Used to activate the Error message gameObject")]
     public GameObject errorMessage;
     #endregion
@@ -20,6 +22,11 @@ public class Clicker : MonoBehaviour
     /// </summary>
     public void _timer()
     {
+        if (timer == false)
+        {
+            StartCoroutine(Experience());
+        }
+
         Displaytimer -= Time.deltaTime;
 
         if(Displaytimer <= 0)
@@ -39,6 +46,7 @@ public class Clicker : MonoBehaviour
 
     public void SellGame()
     {
+        float xpAmount = 0.05f;
         if (PlayerStats.products == 0)
         {
             // displays error message letting the player know they need more production
@@ -49,10 +57,25 @@ public class Clicker : MonoBehaviour
         {
             PlayerStats.products -= 1;
             PlayerStats.money += PlayerStats.sellAmount;
+            
+            if (canGainXp == true)
+            {
+                PlayerStats.xp += xpAmount;
+            }
+            
         }
         
     }
     #endregion
+
+
+    IEnumerator Experience()
+    {
+        canGainXp = true;
+        timer = false;
+        yield return new WaitForSeconds(1);
+
+    }
 
 
 }

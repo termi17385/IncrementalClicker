@@ -13,6 +13,7 @@ public class DebugScript : MonoBehaviour
 
     private void OpenTools()
     {
+
         bool openTools = Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.D);
 
         if (openTools && count <= 0)
@@ -26,6 +27,7 @@ public class DebugScript : MonoBehaviour
             count = 0;
         } 
     }
+
 
     public void DebugGiveMoney(float Money)
     {

@@ -67,7 +67,7 @@ namespace incrementalClicker.player
         public static int level = 1;
         public static float xp = 0;
 
-        [SerializeField] private float rXp;
+        [SerializeField] public float rXp;
         [SerializeField] private float _xp;
         [SerializeField] private float _xpScale;
         [SerializeField] private int _maxLevel;
@@ -100,7 +100,7 @@ namespace incrementalClicker.player
         {
             clicker.errorMessage.SetActive(false);
 
-            if(autoLoad == true)
+            if(loadSave == true)
             {
                 LoadPlayer();
             }
@@ -122,15 +122,18 @@ namespace incrementalClicker.player
             enhancementButtons = _enhancementButtons;
             #endregion
 
-            xp = _xp;
+            #region ExperienceVariables
+            _xp = xp;
             _level = level;
             rXp = RequiredXP;
+            #endregion
 
             #region Clicker Methods
             clicker._timer();
             #endregion
 
             #region Display Text
+            text.DisplayExperienceStats();
             text.DisplayMoney();
             text.DisplayProducts();
             #endregion
@@ -148,7 +151,7 @@ namespace incrementalClicker.player
             if (xp >= RequiredXP)
             {
                 level += 1;
-                _xp = 0;
+                xp = 0;
             }
         }
 
@@ -172,8 +175,10 @@ namespace incrementalClicker.player
             EnchancementData edata = SaveSystem.loadedData.enchancementData;
 
             products = data.products;
+
             money = data.money;
             sellAmount = data.sellAmount;
+
             autoClickSave = data.autoClicker;
             autoSellSave = data.autoSeller;
 
@@ -185,6 +190,9 @@ namespace incrementalClicker.player
 
             SellerButton.cost = data.sellerCost;
             SellerButton.costIncrease = data.sellerCostIncrease;
+
+            xp = data.playerXP;
+            level = data.playerLevel;
 
             foreach (EnhancementButton btn in FindObjectsOfType<EnhancementButton>())
             {

@@ -33,6 +33,7 @@ public class MenuManager : MonoBehaviour
     {
         _AutoLoad();
         _AutoSave();
+        FullscreenCheck();
     }
 
 

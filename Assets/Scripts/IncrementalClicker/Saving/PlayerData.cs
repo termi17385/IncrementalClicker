@@ -24,6 +24,11 @@ public class PlayerData
     public float clickerCostIncrease;
     #endregion
 
+    #region Experience
+    public float playerXP;
+    public int playerLevel;
+    #endregion
+
 
     public PlayerData()
     {
@@ -36,6 +41,7 @@ public class PlayerData
         autoSeller = PlayerStats.autoSellSave;
         #endregion
 
+        #region AutoClickers
         sellers = AutoSeller.autoClick;
         robots = AutoClicker.autoClick;
 
@@ -44,6 +50,12 @@ public class PlayerData
 
         sellerCost = SellerButton.cost;
         sellerCostIncrease = SellerButton.costIncrease;
+        #endregion
+
+        #region Experience
+        playerXP = PlayerStats.xp;
+        playerLevel = PlayerStats.level;
+        #endregion
 
 
     }
